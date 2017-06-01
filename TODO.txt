@@ -1,0 +1,24 @@
+!port scanner
+!webcam photo
+webcam video?
+!packet sniffer
+firewall avoidance-
+antivirus avoidance-
+!!rar depacking
+usb auto run-
+port opener?
+link auto run?-
+!microphone
+cpu usage graph?
+memory usage graph?
+disk usage graph?
+network usage graph?
+auto run on startup-
+stability improvement-
+make server linux compatible-
+make client linux compatible?-
+use vpn-
+spoof mac-
+use proxy-
+subnet scanner
+wol

