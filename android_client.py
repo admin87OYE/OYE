@@ -97,7 +97,7 @@ def parse_cmd(victims, PORT):
         parse_cmd(victims, PORT)
     elif intent == 'rescan':
         main()
-    elif intent == 'help':
+    elif intent == 'help' or intent == '?':
         print("[!] Available commands: getlog, mailoff, mailon, rescan, help, exit, quit")
         parse_cmd(victims, PORT)
     elif intent == 'exit' or intent == 'quit':
