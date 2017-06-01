@@ -8,8 +8,12 @@ def main():
 
     PORT = 4765
 
-    victims = scan_lan(PORT)
-    parse_cmd(victims, PORT)
+    try:
+        victims = scan_lan(PORT)
+        parse_cmd(victims, PORT)
+    except (ConnectionAbortedError, ConnectionResetError):
+        print("[-] Connection to server lost")
+        parse_cmd(victims, PORT)
 
 
 def scan_lan(PORT):
