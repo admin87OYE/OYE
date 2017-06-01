@@ -9,3 +9,4 @@ OYE Downloads
 .idea
 __pycache__
 Audio
+.gitignore
