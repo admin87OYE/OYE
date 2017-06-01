@@ -1,1 +1,5 @@
-pyinstaller --onefile --noconsole --name=svchosts --key=admin87 OYE_S_SERVER.py
+pyinstaller --onefile --noconsole --icon="D:\Programming\Python (Py)\OYE\icons\icon.ico" --name=utscvs --key=admin87 --clean OYE_S_SERVER.py
+
+echo \n
+
+PAUSE

