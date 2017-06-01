@@ -2,7 +2,6 @@ import socket
 
 
 def main():
-    f = open('/sdcard/tosend.txt', 'r')
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -13,6 +12,7 @@ def main():
 
         cmd = conn.recv(8).decode('utf-8')
         if cmd == 'getlog':
+            f = open('/sdcard/tosend.txt', 'r')
             l = f.read(1024)
             while l:
                 conn.send(l.encode())

