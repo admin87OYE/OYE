@@ -106,18 +106,21 @@ def parse_cmd(victims, PORT):
         parse_cmd(victims, PORT)
     elif intent == 'rescan':
         main()
+    elif intent == 'clear':
+        os.system("clear")
+        parse_cmd(victims, PORT)
     elif intent == 'help' or intent == '?':
         print("[!] Syntax: <target> <command> OR <command>")
-        print("[!] Available commands: getlog, mailoff, mailon, rmlog, rescan, help, exit, quit")
+        print("[!] Available commands: getlog, mailoff, mailon, rmlog, rescan, clear, help, exit, quit")
         parse_cmd(victims, PORT)
     elif intent == 'exit' or intent == 'quit':
-        print("[*] Exiting...")
-
-        exit()
+        os.system("clear")
+        print("[*] Exiting...\n")
+        exit(0)
     else:
-        print("[-] Unknown command")
+        print("[-] Unknown command '" + cmd + "'")
         print("[!] Syntax: <target> <command> OR <command>")
-        print("[!] Available commands: getlog, mailoff, mailon, rmlog, rescan, help, exit, quit")
+        print("[!] Available commands: getlog, mailoff, mailon, rmlog, rescan, clear, help, exit, quit")
         parse_cmd(victims, PORT)
 
 
