@@ -21,7 +21,6 @@ class OyeSServer:
         self.logger = Logger("C:\\Users\\Public\\")
         self.mailer = Mailer(self, freq=20)
         self.server = Server(self)
-        print('end of main reached')
 
     # TODO: Fix this functionality
     @staticmethod

