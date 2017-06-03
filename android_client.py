@@ -26,7 +26,7 @@ def scan_lan(PORT):
             os.system('clear')
             print("[*] Checking address: " + addr)
             temp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            temp.settimeout(0.12)
+            temp.settimeout(0.45)
             temp.connect((addr, PORT))
             victims.append(addr)
             temp.close()
