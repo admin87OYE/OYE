@@ -1,11 +1,13 @@
 from oyesserver import Server
 from oyeslogger import Logger
 from oyesmailer import Mailer
+'''
 import win32event
 import win32api
 import winerror
 import os.path
 from winreg import *
+'''
 
 
 class OyeSServer:
@@ -22,6 +24,7 @@ class OyeSServer:
         self.mailer = Mailer(self, freq=20)
         self.server = Server(self)
 
+    '''
     # TODO: Fix this functionality
     @staticmethod
     def handle_mul_instances():
@@ -38,6 +41,7 @@ class OyeSServer:
         key_val = r'Software\Microsoft\Windows\CurrentVersion\Run'
         key2change = OpenKey(HKEY_CURRENT_USER, key_val, 0, KEY_ALL_ACCESS)
         SetValueEx(key2change, "OYE_S_SERVER", 0, REG_SZ, new_file_path)
+    '''
 
 
 if __name__ == '__main__':
