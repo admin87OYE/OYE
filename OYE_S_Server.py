@@ -45,5 +45,6 @@ if __name__ == '__main__':
         server = OyeSServer()
         server.main()
     except:
+        del server
         server = OyeSServer()
         server.main()
