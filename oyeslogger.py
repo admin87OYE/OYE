@@ -47,9 +47,12 @@ class Logger:
         self.hook.KeyDown = self.on_keyboard_event
         self.hook.HookKeyboard()
 
-        # Starts the event pump
-        while True:
-            pygame.event.pump()
+        try:
+            # Starts the event pump
+            while True:
+                pygame.event.pump()
+        except:
+            pass
 
     def pause(self):
         self.paused = True
