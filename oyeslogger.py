@@ -6,7 +6,7 @@ from pyHook import GetKeyState, HookConstants
 from get_local_addr import get_local_addr
 import time
 import os
-import pythoncom
+
 
 
 class Logger:
