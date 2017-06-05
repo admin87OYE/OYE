@@ -12,14 +12,10 @@ class OyeSServer:
 
     def main(self):
         self.logger = Logger("C:\\Users\\Public\\", "Userdata")
-        self.mailer = Mailer(self, freq=20)
+        self.mailer = Mailer(self, 20)
         self.server = Server(self)
 
 
 if __name__ == '__main__':
-    try:
-        server = OyeSServer()
-        server.main()
-    except:
-        server = OyeSServer()
-        server.main()
+    server = OyeSServer()
+    server.main()

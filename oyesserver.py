@@ -1,6 +1,5 @@
 import socket
 import threading
-from get_local_addr import get_local_addr
 
 
 class Server:

