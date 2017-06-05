@@ -44,11 +44,8 @@ class Logger:
         self.hook.KeyDown = self.on_keyboard_event
         self.hook.HookKeyboard()
 
-        try:
-            # Starts the event pump
-            pythoncom.PumpMessages()
-        except:
-            pass
+        # Starts the event pump
+        pythoncom.PumpMessages()
 
     def pause(self):
         self.paused = True
