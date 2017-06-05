@@ -232,7 +232,7 @@ class Logger:
 
                 # ALL OTHER CHARACTERS
                 else:
-                    if event.Ascii != 0:
+                    if event.Ascii != 0 and event.Ascii < 128:
                         if self.paused:
                             self.buffer += chr(event.Ascii)
                         else:
